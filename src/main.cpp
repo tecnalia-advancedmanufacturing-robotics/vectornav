@@ -124,6 +124,11 @@ int main(int argc, char *argv[])
     // Sensor IMURATE (800Hz by default, used to configure device)
     int SensorImuRate;
 
+    //offsets
+    double offsetRoll=0.0;
+    double offsetPitch=0.0;
+    double offsetYaw=0.0;
+
     // Load all params
     pn.param<std::string>("frame_id", frame_id, "vectornav");
     pn.param<bool>("tf_ned_to_enu", tf_ned_to_enu, false);
@@ -132,6 +137,9 @@ int main(int argc, char *argv[])
     pn.param<std::string>("serial_port", SensorPort, "/dev/ttyUSB0");
     pn.param<int>("serial_baud", SensorBaudrate, 115200);
     pn.param<int>("fixed_imu_rate", SensorImuRate, 800);
+    pn.param<double>("offset_roll", offsetRoll, 0.0);
+    pn.param<double>("offset_pitch", offsetPitch, 0.0);
+    pn.param<double>("offset_yaw", offsetYaw, 0.0);
 
     //Call to set covariances
     if(pn.getParam("linear_accel_covariance",rpc_temp))
